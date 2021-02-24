@@ -3,24 +3,31 @@
 
 ## 函数说明
 
-### void Init();
+### void Init()
+初始化链表
+从文件从读取数据输入到链表中
+若时间长考虑做个过场动画
 
-### void Login();
+### void Login()
+登录操作
+密码错误，重新登陆
+登陆成功跳转至主菜单
 
-### int Choose_Print(char);
+### int Choose_Print(char)
 
-### void MainMenu();
 
-### void Quit();
+### void MainMenu()
 
-### void Add_Information();
+### void Quit()
 
-### void Change_Information();
+### void Add_Information()
 
-### void Delete_Information();
+### void Change_Information()
 
-### void Search_Information();
+### void Delete_Information()
 
-### void Show_Information();
+### void Search_Information()
 
-### void Exit_Program();
+### void Show_Information()
+
+### void Exit_Program()
