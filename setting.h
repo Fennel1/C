@@ -1,6 +1,6 @@
 //参数设置
 #define MANAGER_NAME "root"             //管理员账户密码
-#define MANAGER_PASSWORD "123456"
+#define MANAGER_PASSWORD "1"
 
 typedef enum Menu           //菜单选项
 {
@@ -11,12 +11,12 @@ typedef struct Student      //学生信息
 {
     char Name[50];
     char ID[50];
-    struct Student *pNext;
+    struct Student *Next;
 
 }stu, *Pstu;
 
-Pstu pHead;
-Pstu pNow;
+Pstu Head;
+Pstu Now;
 unsigned int Count=0;       //学生人数
 char ManagerName[50];
 char ManagerPassword[50];
