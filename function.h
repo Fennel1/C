@@ -7,10 +7,11 @@
 
 void Init();
 void Login();
-int Choose_Print(char);
+int Choose_Menu(char);
 void MainMenu();
 void Quit();
 void Add_Information();
+int Choose_Change(char, Pstu);
 void Change_Information();
 void Delete_Information();
 void Search_Information();
@@ -78,11 +79,13 @@ void Login()                    //登录
     MainMenu();     //跳转到主菜单
 }
 
-int Choose_Print(char option)             
+int Choose_Menu(char option)             
 {
     static int point=0;
     if ((option==72 || option=='w'|| option=='W')&& point!=0)   point--;
     else    if ((option==80|| option=='s'|| option=='S') && point!=5)   point++;
+
+    printf("\n\n");
 
     for (int i=0; i<=5; i++)
     {
@@ -120,10 +123,9 @@ void MainMenu()                 //主菜单
 {
     char option=0;
     int point;
-    do
-    {
+    do{
         system("cls");
-        point = Choose_Print(option);
+        point = Choose_Menu(option);
         option = getche();
     }while(option!=13);
 
@@ -179,10 +181,38 @@ void Add_Information()          //添加信息
     Quit();
 }
 
+int Choose_Change(char option, Pstu change)
+{
+    static int point=0;
+    if ((option==72 || option=='w'|| option=='W')&& point!=0)   point--;
+    else    if ((option==80|| option=='s'|| option=='S') && point!=5)   point++;
+
+    printf("\n\t\t\t请选择要修改的内容\n\n");
+
+    for (int i=0; i<=2; i++)
+    {
+        if (i==point)   printf("\t\t\t->\t");
+        else    printf("\t\t\t  \t");
+        switch (i)
+        {
+            case 0:
+                printf("ID：%s", change->ID);
+                break;
+            case 1:
+                printf("名称：%s", change->Name);
+                break;
+        }
+        if (i==point)   printf("\t\t<-\n\n");
+        else    printf("\t\t\n\n");
+    }
+
+    return point;
+}
+
 void Change_Information()       //修改信息
 {     
     char id[50];
-    printf("\t\t\t请输入要修改的id：");
+    printf("\n\t\t\t请输入要修改的id：");
     scanf("%s", id);
 
     Pstu temp = Head->Next;
@@ -190,8 +220,28 @@ void Change_Information()       //修改信息
     {
         if (strcmp(temp->ID, id)==0)
         {
-            printf("%s\t\t%s\n", temp->ID, temp->Name);
-            //任意选择一项去修改
+            char option=0;
+            int point;
+            do{
+                system("cls");
+                point = Choose_Change(option, temp);
+                option = getche();
+            }while(option!=13);
+
+            switch(point)
+            {
+                case ID:
+                    printf("\t\t\t将ID修改为：");
+                    scanf("%s", temp->ID);
+                    printf("\n\n\t\t\tID修改成功");
+                    break;
+                case Name:
+                    printf("\n\t\t\t将名称修改为：");
+                    scanf("%s", temp->Name);
+                    printf("\n\n\t\t\t名称修改成功");
+                    break;
+            }
+            
             break;
         }
         temp = temp->Next;
@@ -206,7 +256,7 @@ void Change_Information()       //修改信息
 void Delete_Information()       //删除信息
 {
     char id[50];
-    printf("请输入要删除的id：");
+    printf("\n\t\t\t请输入要删除的id：");
     scanf("%s", id);
     Pstu temp = Head;
     while (temp->Next!=NULL)
@@ -214,8 +264,8 @@ void Delete_Information()       //删除信息
         if (strcmp(temp->Next->ID, id)==0)
         {
             char option;
-            printf("%s\t\t%s\n", temp->Next->ID, temp->Next->Name);
-            printf("是否删除该消息（输入Enter确认删除）\n");
+            printf("\n\n\t\t\tID：%s\t\t名称：%s\n\n", temp->Next->ID, temp->Next->Name);
+            printf("\t\t\t是否删除该消息（输入Enter确认删除）\n");
             option = getch();
             if (option==13)
             {
@@ -223,11 +273,11 @@ void Delete_Information()       //删除信息
                 temp->Next = delete->Next;
                 free(delete);
                 Count--;
-                printf("成功删除\n");
+                printf("\t\t\t成功删除\n");
             }
             else
             {
-                printf("取消删除\n");
+                printf("\t\t\t取消删除\n");
             }
             break;
         }
@@ -235,7 +285,7 @@ void Delete_Information()       //删除信息
     }
     if (temp==NULL)
     {
-        printf("查无此人, 删除失败\n");
+        printf("\t\t\t查无此人, 删除失败\n");
     }
 
     Quit();
@@ -244,7 +294,7 @@ void Delete_Information()       //删除信息
 void Search_Information()       //查询信息
 {
     char id[50];
-    printf("请输入要查询的id：");
+    printf("\n\t\t\t请输入要查询的id：");
     scanf("%s", id);
 
     Pstu temp = Head->Next;
@@ -252,14 +302,14 @@ void Search_Information()       //查询信息
     {
         if (strcmp(temp->ID, id)==0)
         {
-            printf("%s\t\t%s\n", temp->ID, temp->Name);
+            printf("\n\t\t\tID：%s\t\t名称：%s\n\n", temp->ID, temp->Name);
             break;
         }
         temp = temp->Next;
     }
     if (temp==NULL)
     {
-        printf("查无此人\n");
+        printf("\n\t\t\t查无此人\n");
     }
     Quit();
 }
@@ -267,10 +317,10 @@ void Search_Information()       //查询信息
 void Show_Information()         //显示信息
 {
     Pstu temp = Head->Next;
-    printf("一共有%d人\n", Count);
+    printf("\n\t\t\t一共有%d人\n\n", Count);
     while (temp!=NULL)
     {
-        printf("%s\t\t%s\n", temp->ID, temp->Name);
+        printf("\t\t\tID：%s\t\t名称：%s\n\n", temp->ID, temp->Name);
         temp = temp->Next;
     }
 

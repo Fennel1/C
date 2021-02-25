@@ -7,6 +7,11 @@ typedef enum Menu           //菜单选项
     Add, Change, Delete, Show, Search, Exit
 }MENU;
 
+typedef enum Message        //用户信息选项
+{
+    ID, Name
+}MESSAGE;
+
 typedef struct Student      //学生信息
 {
     char Name[50];
