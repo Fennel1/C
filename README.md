@@ -16,7 +16,7 @@
 * 密码错误，重新登陆
 * 登陆成功跳转至主菜单
 
-### int Choose_Print(char)
+### int Choose_Menu(char)
 * 如图所示的菜单选择，接受一个字符（↑↓、ws、WS）进行上下选择
 ```
                                 添加数据
@@ -35,7 +35,7 @@
 * 跳转至主菜单
 
 ### void MainMenu()
-* 先进行菜单上下选择 `Choose_Print`
+* 先进行菜单上下选择 `Choose_Menu`
 * 输入 `Enter` 进入对应菜单
 ```
 0 Add_Information()
