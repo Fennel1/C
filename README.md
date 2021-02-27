@@ -55,8 +55,14 @@
 * Now始终为链表的最后一个成员
 * Count+1
 
+### int Choose_Change(char, Pstu)
+* 接受一个字符（↑↓、ws、WS）进行上下选择
+* 接受一个结构体指针，该指针指向将被修改的成员
+* 返回选择的元素对应的值
+
 ### void Change_Information()
-* 输入ID，修改该ID的任意数据（未完成）
+* 输入ID，修改该ID的任意数据
+* 可选择多个元素进行修改（未完成）
 
 ### void Delete_Information()
 * 输入ID，从链表中删除该成员
