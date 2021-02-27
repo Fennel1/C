@@ -12,7 +12,7 @@ typedef enum Message        //用户信息选项
     ID, Name
 }MESSAGE;
 
-typedef struct Student      //学生信息
+typedef struct Student      //信息
 {
     char Name[50];
     char ID[50];
@@ -22,6 +22,6 @@ typedef struct Student      //学生信息
 
 Pstu Head;
 Pstu Now;
-unsigned int Count=0;       //学生人数
+unsigned int Count=0;       //人数
 char ManagerName[50];
 char ManagerPassword[50];
